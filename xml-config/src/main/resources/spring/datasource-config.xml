@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/jee
+         http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+
+    <!-- jee:jndi-lookup id="dataSource" jndi-name="${datasource-jndiName}" expected-type="javax.sql.DataSource"/-->
+
+    <!-- beans profile="default">
+        <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close"
+              p:driverClass="oracle.jdbc.OracleDriver"
+              p:jdbcUrl="${oracle-for-ddl}"
+              p:username="${oracle-ddl-user}"
+              p:password="${oracle-ddl-pass}"
+              p:initSQL="alter session set current_schema=${oracle-ddl-user}"
+              p:disableJMX="true"
+              p:minConnectionsPerPartition="1"
+              p:maxConnectionsPerPartition="20"/>
+    </beans-->
+    
+    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close"
+          p:driverClass="${jdbc.driverClass}"
+          p:jdbcUrl="${jdbc.url}"
+          p:username="${jdbc.username}"
+          p:password="${jdbc.password}"          
+          p:disableJMX="true"
+          p:minConnectionsPerPartition="1"
+          p:maxConnectionsPerPartition="20"/>
+
+</beans>
+
+
+
+
+
+

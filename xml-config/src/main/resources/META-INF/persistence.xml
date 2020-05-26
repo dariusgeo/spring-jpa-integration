@@ -1,0 +1,34 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="HR_PU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>edu.link.jpa.model.Country</class>
+		<class>edu.link.jpa.model.Department</class>
+		<class>edu.link.jpa.model.Employee</class>
+		<class>edu.link.jpa.model.Job</class>
+		<class>edu.link.jpa.model.JobHistory</class>
+		<class>edu.link.jpa.model.Location</class>
+		<class>edu.link.jpa.model.Region</class>
+
+		<properties>
+			<!-- Configuring JDBC properties -->
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+			<property name="javax.persistence.jdbc.user" value="HR" />
+			<property name="javax.persistence.jdbc.password" value="student123" />
+
+			<!-- Hibernate properties -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect" />
+
+			<!-- TomEE properties -->
+			<property name="tomee.jpa.factory.lazy" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>
