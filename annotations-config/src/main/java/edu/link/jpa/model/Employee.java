@@ -3,21 +3,7 @@ package edu.link.jpa.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 @Entity
 @Table(name="employees")
@@ -67,9 +53,13 @@ public class Employee implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="department_id")
 	private Department department;
+
+	@ManyToOne
+	@JoinColumn(name="manager_id")
+	private Employee manager;
 		
 	@Version
-	@Column(name = "version", nullable = false)
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
 	private int version;
 
 	public Long getEmployeeId() {
@@ -152,12 +142,20 @@ public class Employee implements Serializable{
 		this.department = department;
 	}
 
+	public Employee getManager() {
+		return manager;
+	}
+
+	public void setManager(Employee manager) {
+		this.manager = manager;
+	}
+
 	public int getVersion() {
 		return version;
 	}
 
 	public void setVersion(int version) {
 		this.version = version;
-	}	
+	}
 
 }

@@ -67,9 +67,13 @@ public class Employee implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="department_id")
 	private Department department;
+
+	@ManyToOne
+	@JoinColumn(name="manager_id")
+	private Employee manager;
 		
 	@Version
-	@Column(name = "version", nullable = false)
+	@Column(name = "version", columnDefinition = "integer DEFAULT 0", nullable = false)
 	private int version;
 
 	public Long getEmployeeId() {
@@ -150,6 +154,14 @@ public class Employee implements Serializable{
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public Employee getManager() {
+		return manager;
+	}
+
+	public void setManager(Employee manager) {
+		this.manager = manager;
 	}
 
 	public int getVersion() {

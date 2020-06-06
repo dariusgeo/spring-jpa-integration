@@ -23,8 +23,8 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource("classpath:jpa-training.properties")
-@EnableTransactionManagement
-@EnableJpaRepositories("edu.link.jpa.dao")
+@EnableTransactionManagement                  // <tx:annotation-driven/> 
+@EnableJpaRepositories("edu.link.jpa.dao")    // <jpa:repositories base-package="edu.link.jpa.dao" />
 public class DatabaseConfig {
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "jdbc.driverClass";
 	private static final String PROPERTY_NAME_DATABASE_PASSWORD = "jdbc.password";
@@ -33,6 +33,7 @@ public class DatabaseConfig {
 
 	private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
 	private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+	private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
 	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "edu.link.jpa.model";
 	
 	@Resource
@@ -52,8 +53,7 @@ public class DatabaseConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
-		entityManagerFactoryBean
-				.setPackagesToScan("edu.link.jpa.model");
+		entityManagerFactoryBean.setPackagesToScan("edu.link.jpa.model");
 		entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
 		entityManagerFactoryBean.setJpaProperties(hibProperties());
 
@@ -69,10 +69,12 @@ public class DatabaseConfig {
 		Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
 		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+		properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO));
+
 		return properties;
 	}
 
-	@Bean(name = "transactionManager")
+	@Bean
 	@Autowired
 	public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();

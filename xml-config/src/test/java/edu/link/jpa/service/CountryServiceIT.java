@@ -27,7 +27,7 @@ public class CountryServiceIT {
 	public void testGetAllCountries(){
 		List<Country> countryList = countryService.getAllCountries();
 		
-		countryList.stream().forEach(emp -> System.out.println( emp.getName()));
+		countryList.stream().forEach(country -> System.out.println( country.getName()));
 		
 		assertEquals(false, countryList.isEmpty());
 	}	
