@@ -55,7 +55,7 @@ public class DatabaseConfig {
 		entityManagerFactoryBean.setDataSource(dataSource());
 		entityManagerFactoryBean.setPackagesToScan("edu.link.jpa.model");
 		entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-		entityManagerFactoryBean.setJpaProperties(hibProperties());
+		entityManagerFactoryBean.setJpaProperties(hibernateProperties());
 
 		return entityManagerFactoryBean;
 	}
@@ -65,7 +65,7 @@ public class DatabaseConfig {
 		return new HibernateJpaVendorAdapter();
 	}
 
-	private Properties hibProperties() {
+	private Properties hibernateProperties() {
 		Properties properties = new Properties();
 		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
 		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
