@@ -1,14 +1,9 @@
 package edu.link.jpa.model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "regions")
@@ -28,6 +23,10 @@ public class Region implements Serializable {
 	@Column(name = "region_name")
 	private String name;
 
+	@OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
+	List<Country> countries;
+
+
 	public Long getRegionId() {
 		return regionId;
 	}
@@ -44,4 +43,11 @@ public class Region implements Serializable {
 		this.name = name;
 	}
 
+	public List<Country> getCountries() {
+		return countries;
+	}
+
+	public void setCountries(List<Country> countries) {
+		this.countries = countries;
+	}
 }

@@ -31,7 +31,7 @@ public class Country implements Serializable{
 	@Column(name="country_name")
 	private String name;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
     @JoinColumn(name = "region_id")
 	private Region region;
 

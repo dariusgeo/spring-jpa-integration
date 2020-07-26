@@ -7,4 +7,6 @@ import edu.link.jpa.model.Country;
 public interface CountryDao {
 
 	List<Country> getAllCountries();
+
+	List<Country> getAllByRegionName(String regionName);
 }

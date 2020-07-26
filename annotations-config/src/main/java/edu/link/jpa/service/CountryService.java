@@ -22,4 +22,11 @@ public class CountryService {
 		return countryDao.getAllCountries();		
 	}
 
+
+	@Transactional(readOnly = true)
+	public List<Country> readAllCountriesByRegionName(String regionName){
+
+		return countryDao.getAllByRegionName(regionName);
+	}
+
 }

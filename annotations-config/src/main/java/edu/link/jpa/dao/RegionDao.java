@@ -7,4 +7,8 @@ import edu.link.jpa.model.Region;
 public interface RegionDao {
 
 	List<Region> getAllRegions();
+
+	Region getByName(String regionName);
+
+	List<Region> getAllRegionsWithJoinFetch();
 }
