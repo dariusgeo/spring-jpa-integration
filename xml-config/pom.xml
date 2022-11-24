@@ -20,7 +20,7 @@
 
         <springframework.version>4.3.2.RELEASE</springframework.version>
         <spring.data.jpa.version>1.7.0.RELEASE</spring.data.jpa.version>
-        <hibernate.version>5.3.7.Final</hibernate.version>
+        <hibernate.version>5.3.20.Final</hibernate.version>
         <junit.version>4.12</junit.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <h2.version>1.4.200</h2.version>
