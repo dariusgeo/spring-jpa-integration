@@ -11,14 +11,13 @@
 
     <!-- jee:jndi-lookup id="dataSource" jndi-name="${datasource-jndiName}" expected-type="javax.sql.DataSource"/-->
 
-    <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close"
-          p:driverClass="${jdbc.driverClass}"
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close"
+          p:driverClassName="${jdbc.driverClass}"
           p:jdbcUrl="${jdbc.url}"
           p:username="${jdbc.username}"
-          p:password="${jdbc.password}"          
-          p:disableJMX="true"
-          p:minConnectionsPerPartition="1"
-          p:maxConnectionsPerPartition="20"/>
+          p:password="${jdbc.password}"
+          p:minimumIdle="1"
+          p:maximumPoolSize="20"/>
 
 </beans>
 

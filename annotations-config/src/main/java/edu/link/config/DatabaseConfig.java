@@ -2,7 +2,6 @@ package edu.link.config;
 
 import java.util.Properties;
 
-import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -36,9 +35,13 @@ public class DatabaseConfig {
 	private static final String PROPERTY_NAME_HIBERNATE_FORMAT_SQL = "hibernate.format_sql";
 	private static final String PROPERTY_NAME_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
 	private static final String PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN = "edu.link.jpa.model";
-	
-	@Resource
-	private Environment env;
+
+	private final Environment env;
+
+	@Autowired
+	public DatabaseConfig(Environment env) {
+		this.env = env;
+	}
 
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
